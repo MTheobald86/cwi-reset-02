@@ -36,7 +36,15 @@ public class Aplicacao {
         System.out.println ("Resultado da divisão 1 / (-9): " + resultadoDivisao2);
         System.out.println ("Resultado da divisão 2.5 / 3.4: " + resultadoDivisao3);
 
+        Comparador comparaValores = new Comparador ();
 
+        boolean comparacao1 = comparaValores.menorQue (1,2);
+        boolean comparacao2 = comparaValores.menorQue(16,10);
+        boolean comparacao3 = comparaValores.menorQue (19,20);
+
+        System.out.println (comparacao1);
+        System.out.println (comparacao2);
+        System.out.println (comparacao3);
 
     }
 
