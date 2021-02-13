@@ -18,5 +18,6 @@ public class Diretor {
                 ", idade=" + idade +
                 ", quantidadeDeFilmesDirigidos=" + quantidadeDeFilmesDirigidos +
                 '}';
+
     }
 }

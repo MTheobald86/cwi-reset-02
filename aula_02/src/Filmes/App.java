@@ -9,5 +9,10 @@ public class App {
 
         avenger.rodarFilme();
 
+        Filme avenger2 = new Filme ("The Avenger: Ultron Age", "Eles retornaram",
+                "160", 2015, 6, diretor1);
+
+        avenger2.rodarFilme();
+
     }
 }
