@@ -15,15 +15,16 @@ public class App {
         Filme avenger = new Filme("The Avengers", "Os heróis mais poderosos da Terra em ação",
                 "160", 2012, 5,diretor1, elenco);
         Filme avenger2 = new Filme ("The Avenger: Ultron Age", "Eles retornaram",
-                "160", 2015, 6, diretor1, elenco);
+                "160", 2015, 7, diretor1, elenco);
 
         elenco.add (ator1);
         elenco.add(diretor1);
 
-        System.out.println("-----------" + avenger + "------------");
+        System.out.println("-----------" + avenger.getTitulo() + "------------");
         avenger.rodarFilme();
         avenger.exibirCreditos();
         System.out.println();
+        System.out.println("----------"+ avenger2.getTitulo() + "------------");
         avenger2.rodarFilme();
         avenger2.exibirCreditos();
         System.out.println();

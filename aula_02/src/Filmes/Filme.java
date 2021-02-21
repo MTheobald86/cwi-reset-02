@@ -21,27 +21,19 @@ public class Filme {
         this.descricao = descricao;
         this.tempoDeDuracaoEmMinutos = tempoDeDuracaoEmMinutos;
         this.anoDeLancamento = anoDeLancamento;
-        this.avaliacao = avaliacao;
+        notaDeAvaliacao(avaliacao);
+        verificaTitulo(titulo);
         this.diretor= diretor;
         this.elenco = elenco;
     }
 
-
-
-    public void rodarFilme (){
-        System.out.println("Título: " + titulo);
-        System.out.println("Sinopse: "+ descricao);
-        System.out.println ("Tempo de duração: " + tempoDeDuracaoEmMinutos);
-        System.out.println("Classificacao: " + avaliacao);
-
-    }
-
     private void notaDeAvaliacao (int avaliacao) {
-        if (avaliacao < 1 || avaliacao > 5){
+        if (avaliacao < 1 || avaliacao > 5) {
             this.avaliacao = 3;
         }else {
             this.avaliacao = avaliacao;
         }
+
     }
 
     private void verificaTitulo (String titulo){
@@ -49,10 +41,16 @@ public class Filme {
             this.avaliacao = 1;
         } else if ("Clube da Luta".equals(titulo)){
             this.avaliacao = 5;
-          }
+        }
     }
 
+    public void rodarFilme (){
+        System.out.println("Título: " + this.titulo);
+        System.out.println("Sinopse: "+ this.descricao);
+        System.out.println ("Tempo de duração: " + this.tempoDeDuracaoEmMinutos);
+        System.out.println("Classificacao: " + this.avaliacao);
 
+    }
 
     public void exibirCreditos (){
         System.out.println("elenco: ");
@@ -62,7 +60,9 @@ public class Filme {
 
     }
 
-
+    public String getTitulo() {
+        return titulo;
+    }
 }
 
 
