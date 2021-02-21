@@ -1,5 +1,9 @@
 package Filmes;
 
+import javax.swing.plaf.synth.SynthRadioButtonMenuItemUI;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Filme {
     private String titulo;
     private String descricao;
@@ -7,24 +11,27 @@ public class Filme {
     private int anoDeLancamento;
     private int avaliacao;
     private Diretor diretor;
+    private List<Pessoa> elenco;
 
 
-    public Filme(String titulo, String descricao, String tempoDeDuracaoEmMinutos, int anoDeDuracao, int avaliacao,
-                 Diretor diretor) {
+    public Filme(String titulo, String descricao, String tempoDeDuracaoEmMinutos, int anoDeLancamento, int avaliacao,
+                 Diretor diretor,
+                 List<Pessoa> elenco) {
         this.titulo = titulo;
-        verificaTitulo (titulo);
         this.descricao = descricao;
         this.tempoDeDuracaoEmMinutos = tempoDeDuracaoEmMinutos;
-        this.anoDeLancamento = anoDeDuracao;
-        notaDeAvaliacao (avaliacao);
-        this.diretor = diretor;
+        this.anoDeLancamento = anoDeLancamento;
+        this.avaliacao = avaliacao;
+        this.diretor= diretor;
+        this.elenco = elenco;
     }
+
+
 
     public void rodarFilme (){
         System.out.println("Título: " + titulo);
         System.out.println("Sinopse: "+ descricao);
         System.out.println ("Tempo de duração: " + tempoDeDuracaoEmMinutos);
-        System.out.println ("Diretor: " + diretor.getNome());
         System.out.println("Classificacao: " + avaliacao);
 
     }
@@ -44,6 +51,18 @@ public class Filme {
             this.avaliacao = 5;
           }
     }
+
+
+
+    public void exibirCreditos (){
+        System.out.println("elenco: ");
+        for (Pessoa elemento:elenco){
+            elemento.descreveInformacao();
+        }
+
+    }
+
+
 }
 
 
