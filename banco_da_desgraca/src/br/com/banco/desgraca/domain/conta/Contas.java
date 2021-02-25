@@ -5,6 +5,7 @@ import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 import br.com.banco.desgraca.exception.ValorInvalidoException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Contas implements ContaBancaria {
@@ -13,7 +14,6 @@ public abstract class Contas implements ContaBancaria {
     private TipoConta tipoConta;
     private double saldo;
 
-    Transacao();
 
     public Contas(InstituicaoBancaria instituicaoBancaria, Integer numeroConta, TipoConta tipoConta, double saldo) {
         this.instituicaoBancaria = instituicaoBancaria;
@@ -21,6 +21,8 @@ public abstract class Contas implements ContaBancaria {
         this.tipoConta = tipoConta;
         this.saldo = saldo;
     }
+
+    Transacao operacoes = new Transacao();
 
     public abstract String dadosDaconta ();
 
@@ -41,9 +43,9 @@ public abstract class Contas implements ContaBancaria {
             throw new ValorInvalidoException();
 
         }else {
-            this.saldo += valor;
+            saldo += valor;
             System.out.println("Depositando " + DecimalFormat.getCurrencyInstance().format(valor) + " em " + dadosDaconta());
-            operacoes.add(new Transacao(TipoTransacao.ENTRADA, valor,data, numeroConta));
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.ENTRADA, valor, data, numeroConta));
         }
 
     }
@@ -52,9 +54,10 @@ public abstract class Contas implements ContaBancaria {
     public void sacar(Double valor) {
         LocalDate data = Data.getDataTransacao();
         if (valor <= saldo){
-            this.saldo -= valor;
-            System.out.println("Retirando " + DecimalFormat.getCurrencyInstance().format(valor) + " de " + dadosDaconta());
-            operacoes.add(new Transacao(TipoTransacao.ENTRADA, valor, data, numeroConta));
+            saldo -= valor;
+            System.out.println("Retirando " + DecimalFormat.getCurrencyInstance().format(valor) + " de " +
+                    dadosDaconta());
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
         }else{
             throw new SaldoInsuficienteException();
         }
@@ -64,29 +67,28 @@ public abstract class Contas implements ContaBancaria {
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
         LocalDate data = Data.getDataTransacao();
-        if (valor < this.saldo){
+        if (valor > saldo){
             throw new SaldoInsuficienteException();
         }else if (valor <= 0){
             throw new ValorInvalidoException();
         }else{
-            this.saldo -= valor;
+            saldo -= valor;
             contaDestino.depositar(valor);
-            System.out.println("Transferindo " + DecimalFormat.getCurrencyInstance().format(valor) + " para " +
-                    contaDestino.toString());
-            operacoes.add(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
+            System.out.println("Transferindo " + DecimalFormat.getCurrencyInstance().format(valor)+ " de "
+                    + dadosDaconta()+ " para " + contaDestino.toString());
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
         }
-
-
     }
 
     @Override
     public void exibirExtrato(LocalDate inicio, LocalDate fim) {
         System.out.println(dadosDaconta());
         System.out.println("------------------");
-        for (Transacao t : operacoes){
+        for (Transacao t : operacoes.getOperacoes()){
             if (t.getNumeroConta().equals(numeroConta)){
                 if (t.getDataDaTransacao().compareTo(inicio)>=0 && t.getDataDaTransacao().compareTo(fim)<=0){
-                    System.out.println(t.getDataDaTransacao() + t.getTipoTransacao().getSinal() + t.getValorTransacao());
+                    System.out.println(t.getDataDaTransacao()+ "  " + t.getTipoTransacao().getSinal() + "  " +
+                            DecimalFormat.getCurrencyInstance().format(t.getValorTransacao()));
                 }
             }
         }

@@ -16,10 +16,16 @@ public class Transacao {
         this.valorTransacao = valorTransacao;
         this.dataDaTransacao = dataDaTransacao;
         this.numeroConta = numeroConta;
+
     }
 
     public Transacao (){
       operacoes = new ArrayList<>();
+    }
+
+    public void registrarTransacao(Transacao operacao){
+        operacoes.add(operacao);
+
     }
 
     public List<Transacao> getOperacoes() {

@@ -8,7 +8,7 @@ import java.text.DecimalFormat;
 import java.time.LocalDate;
 
 public class ContaCorrente extends Contas{
-    private static final double TAXA_TRANSFERENCIA_OUTRO_BANCO = 0.01;
+    private static final double TAXA_TRANSFERENCIA_OUTRO_BANCO = 1.01;
 
 
 
@@ -39,9 +39,10 @@ public class ContaCorrente extends Contas{
     @Override
     public void transferir(Double valor, ContaBancaria contaDestino) {
         if (getInstituicaoBancaria().equals(contaDestino.getInstituicaoBancaria())){
-            setSaldo(getSaldo() - valor * TAXA_TRANSFERENCIA_OUTRO_BANCO);
+            super.transferir(valor, contaDestino);
+
         }else{
-        super.transferir(valor, contaDestino);
+            super.transferir((valor*TAXA_TRANSFERENCIA_OUTRO_BANCO), contaDestino);
         }
     }
 
