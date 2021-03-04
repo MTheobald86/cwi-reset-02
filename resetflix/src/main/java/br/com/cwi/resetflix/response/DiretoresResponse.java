@@ -1,0 +1,32 @@
+package br.com.cwi.resetflix.response;
+
+import br.com.cwi.resetflix.entity.DiretorEntity;
+
+import java.util.List;
+
+public class DiretoresResponse {
+
+    private Long id;
+    private String nome;
+
+    public DiretoresResponse(Long id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+}
