@@ -5,6 +5,7 @@ import br.com.banco.desgraca.exception.SaldoInsuficienteException;
 import br.com.banco.desgraca.exception.ValorInvalidoException;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Contas implements ContaBancaria {
@@ -13,7 +14,7 @@ public abstract class Contas implements ContaBancaria {
     private TipoConta tipoConta;
     private double saldo;
 
-    Transacao();
+    List<Transacao>operacoes = new ArrayList<>();
 
     public Contas(InstituicaoBancaria instituicaoBancaria, Integer numeroConta, TipoConta tipoConta, double saldo) {
         this.instituicaoBancaria = instituicaoBancaria;

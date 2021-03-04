@@ -18,7 +18,7 @@ public class Transacao {
         this.numeroConta = numeroConta;
     }
 
-    public Transacao (){
+    public void transacao(){
       operacoes = new ArrayList<>();
     }
 
