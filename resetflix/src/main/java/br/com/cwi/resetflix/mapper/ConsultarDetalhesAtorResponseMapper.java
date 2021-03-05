@@ -4,13 +4,21 @@ import java.util.List;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
 import br.com.cwi.resetflix.entity.FilmeEntity;
+import br.com.cwi.resetflix.repository.FilmeRepository;
 import br.com.cwi.resetflix.response.ConsultarDetalhesAtorResponse;
 import br.com.cwi.resetflix.response.FilmeResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConsultarDetalhesAtorResponseMapper {
+    static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper();
 
-    public ConsultarDetalhesAtorResponse mapear(final AtorEntity atorSalvo, final List<FilmeEntity> filmesAtor) {
-        List<FilmeResponse> filmesResponse = new FilmeResponseMapper().mapear(filmesAtor);
+    @Autowired
+    FilmeRepository filmeRepository;
+
+    public ConsultarDetalhesAtorResponse mapear(final AtorEntity atorSalvo) {
+
+        List<FilmeEntity> filmesEntity = filmeRepository.acharFilmesAtor(atorSalvo.getId());
+        List<FilmeResponse> filmesResponse = MAPPER_RESPONSE.mapear(filmesEntity);
         return new ConsultarDetalhesAtorResponse(atorSalvo.getId(),
             atorSalvo.getNome(), filmesResponse);
     }

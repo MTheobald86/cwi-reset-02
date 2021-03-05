@@ -35,11 +35,12 @@ public class DiretoresRepository {
         return diretorSalvar.getId();
     }
 
-    public void vincularFilme(FilmeEntity filmeSalvar) {
+    public Long vincularFilme(FilmeEntity filmeSalvar) {
         for (DiretorEntity diretor : diretores){
             if (diretor.getId().equals(filmeSalvar.getIdDiretor())){
                 diretor.getIdFilmes().add(filmeSalvar.getId());
             }
         }
+        return filmeSalvar.getIdDiretor();
     }
 }

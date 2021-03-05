@@ -19,6 +19,7 @@ import java.util.List;
 public class DiretorService {
     @Autowired
     private DiretoresRepository diretoresRepository;
+    @Autowired
     private FilmeRepository filmeRepository;
 
     private static DiretoresResponseMapper MAPPER_RESPONSE = new DiretoresResponseMapper();

@@ -1,29 +1,22 @@
 package br.com.cwi.resetflix.repository;
 
-import static java.util.Arrays.asList;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import br.com.cwi.resetflix.exception.NotFoundException;
-import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import br.com.cwi.resetflix.domain.Genero;
 import br.com.cwi.resetflix.entity.FilmeEntity;
-
-import javax.swing.text.html.parser.Entity;
 
 @Repository
 public class FilmeRepository {
 
     static List<FilmeEntity> filmes = new ArrayList<>();
-    static Long idFilme = 1001l;
+    static Long idFilme = 1001L;
 
     @Autowired
     DiretoresRepository diretoresRepository;
+    @Autowired
     AtoresRepository atoresRepository;
 
 
@@ -73,10 +66,9 @@ public class FilmeRepository {
             filmeSalvar.setId(idFilme);
             idFilme++;
         }
-        diretoresRepository.vincularFilme(filmeSalvar);
-        atoresRepository.vincularFilme(filmeSalvar);
 
         filmes.add(filmeSalvar);
+
         return filmeSalvar.getId();
     }
 }

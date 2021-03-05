@@ -20,13 +20,15 @@ import java.util.List;
 
 @Service
 public class FilmeService {
+    static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper() ;
+    static ConsultarDetalhesFilmeResponseMapper MAPPER_DETALHES_FILME = new ConsultarDetalhesFilmeResponseMapper();
+    static FilmeEntityMapper MAPPER_ENTITY = new FilmeEntityMapper();
 
     @Autowired
     private FilmeRepository filmeRepository;
-    private FilmeResponseMapper MAPPER_RESPONSE;
-    private ConsultarDetalhesFilmeResponseMapper MAPPER_DETALHES_FILME;
-    private FilmeEntityMapper MAPPER_ENTITY;
+    @Autowired
     private DiretoresRepository diretoresRepository;
+    @Autowired
     private AtoresRepository atoresRepository;
 
     public ConsultarDetalhesFilmeResponse acharFilmePorId(final Long id) {

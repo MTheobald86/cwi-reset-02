@@ -19,15 +19,15 @@ import br.com.cwi.resetflix.response.ConsultarDetalhesAtorResponse;
 @Service
 public class AtoresService {
 
+    static AtoresResponseMapper MAPPER_RESPONSE = new AtoresResponseMapper();
+    static AtorEntityMapper MAPPER_ENTITY = new AtorEntityMapper();
+    static ConsultarDetalhesAtorResponseMapper MAPPER_DETALHES_ATOR = new ConsultarDetalhesAtorResponseMapper();
+
     @Autowired
     private AtoresRepository atoresRepository;
 
     @Autowired
     private FilmeRepository filmeRepository;
-
-    static AtoresResponseMapper MAPPER_RESPONSE = new AtoresResponseMapper();
-    static AtorEntityMapper MAPPER_ENTITY = new AtorEntityMapper();
-    static ConsultarDetalhesAtorResponseMapper MAPPER_DETALHES_ATOR = new ConsultarDetalhesAtorResponseMapper();
 
     public List<AtoresResponse> getAtores() {
         final List<AtorEntity> atores = atoresRepository.getAtores();
@@ -41,7 +41,6 @@ public class AtoresService {
 
     public ConsultarDetalhesAtorResponse consultarDetalhesAtor(final Long id) {
         AtorEntity atorSalvo = atoresRepository.acharAtorPorId(id);
-        List<FilmeEntity> filmesAtor = filmeRepository.acharFilmesAtor(id);
-        return MAPPER_DETALHES_ATOR.mapear(atorSalvo, filmesAtor);
+        return MAPPER_DETALHES_ATOR.mapear(atorSalvo);
     }
 }
