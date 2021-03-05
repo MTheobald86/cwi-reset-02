@@ -21,14 +21,15 @@ public class FilmeRepository {
 
 
     public List<FilmeEntity> getFilmes(Genero genero){
+        List<FilmeEntity> filmesFiltrados = new ArrayList<>();
         for (FilmeEntity filme : filmes){
             if (filme.getGenero().equals(genero)){
-                filmes.add(filme);
+                filmesFiltrados.add(filme);
             }else{
                 throw new NotFoundException("Não há registros para sua busca");
             }
         }
-        return filmes;
+        return filmesFiltrados;
     }
 
     public List<FilmeEntity> acharFilmesAtor(final Long id) {
