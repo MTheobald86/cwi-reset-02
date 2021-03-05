@@ -1,5 +1,6 @@
 package br.com.cwi.resetflix.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
@@ -10,16 +11,10 @@ import br.com.cwi.resetflix.response.FilmeResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class ConsultarDetalhesAtorResponseMapper {
-    static FilmeResponseMapper MAPPER_RESPONSE = new FilmeResponseMapper();
 
-    @Autowired
-    FilmeRepository filmeRepository;
-
-    public ConsultarDetalhesAtorResponse mapear(final AtorEntity atorSalvo) {
-
-        List<FilmeEntity> filmesEntity = filmeRepository.acharFilmesAtor(atorSalvo.getId());
-        List<FilmeResponse> filmesResponse = MAPPER_RESPONSE.mapear(filmesEntity);
+    public ConsultarDetalhesAtorResponse mapear(final AtorEntity atorSalvo, final List<FilmeEntity> filmesAtor) {
+        List<FilmeResponse> filmeResponses = new FilmeResponseMapper().mapear(filmesAtor);
         return new ConsultarDetalhesAtorResponse(atorSalvo.getId(),
-            atorSalvo.getNome(), filmesResponse);
+            atorSalvo.getNome(), filmeResponses);
     }
 }

@@ -1,5 +1,6 @@
 package br.com.cwi.resetflix.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,7 @@ public class AtoresService {
 
     public ConsultarDetalhesAtorResponse consultarDetalhesAtor(final Long id) {
         AtorEntity atorSalvo = atoresRepository.acharAtorPorId(id);
-        return MAPPER_DETALHES_ATOR.mapear(atorSalvo);
+        List<FilmeEntity> filmesAtor = new ArrayList<>();
+        return MAPPER_DETALHES_ATOR.mapear(atorSalvo, filmesAtor);
     }
 }

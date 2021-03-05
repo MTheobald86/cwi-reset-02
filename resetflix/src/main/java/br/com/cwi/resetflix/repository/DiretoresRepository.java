@@ -10,21 +10,12 @@ import java.util.List;
 public class DiretoresRepository {
 
     static List<DiretorEntity> diretores = new ArrayList<>();
-    static Long contadorIds = 1L;
+    Long contadorIds = 1L;
 
     public List<DiretorEntity> getDiretores() {
        return diretores;
         }
 
-
-    public DiretorEntity acharDiretorPorId(Long id) {
-        for (DiretorEntity diretorSalvo:diretores){
-            if (diretorSalvo.getId().equals(id)){
-                return diretorSalvo;
-            }
-        }
-        return null;
-    }
 
     public Long criarDiretor(final DiretorEntity diretorSalvar) {
         if (diretorSalvar.getId() == null){
@@ -33,6 +24,15 @@ public class DiretoresRepository {
         }
         diretores.add(diretorSalvar);
         return diretorSalvar.getId();
+    }
+
+    public DiretorEntity acharDiretorPorId(Long id) {
+        for (DiretorEntity diretorSalvo:diretores){
+            if (diretorSalvo.getId().equals(id)){
+                return diretorSalvo;
+            }
+        }
+        return null;
     }
 
     public Long vincularFilme(FilmeEntity filmeSalvar) {

@@ -12,7 +12,7 @@ import br.com.cwi.resetflix.entity.AtorEntity;
 public class AtoresRepository {
 
     static List<AtorEntity> atores = new ArrayList<>();
-    static Long contadorIds = 1l;
+    Long contadorIds = 1l;
 
     public List<AtorEntity> getAtores(){
         return atores;
@@ -29,9 +29,10 @@ public class AtoresRepository {
 
     public AtorEntity acharAtorPorId(final Long id) {
         AtorEntity atorProcurado = new AtorEntity();
-        for(AtorEntity atorEntity : atores){
-            if(atorEntity.getId().equals(id)){
-               atorProcurado = atorEntity;
+        for(AtorEntity ator : atores){
+            if(ator.getId().equals(id)){
+               atorProcurado = ator;
+               break;
             }
         }
         return atorProcurado;

@@ -17,8 +17,7 @@ import io.swagger.annotations.ApiParam;
 public interface SeriesContract {
 
     @ApiOperation(value = "Obter todas as séries.", notes = "Obtém todas as séries cadastradas no sistema.")
-    public List<SerieResponse> getSeries(
-        @ApiParam(name = "genero", value = "Valor Utilizado para filtragem por gênero",
+    public List<SerieResponse> getSeries(@ApiParam(name = "genero", value = "Valor Utilizado para filtragem por gênero",
             required = false) Genero genero);
 
     @ApiOperation(value = "Obter série por ID.", notes = "Obtém detalhes da série baseado no seu identificador.")
