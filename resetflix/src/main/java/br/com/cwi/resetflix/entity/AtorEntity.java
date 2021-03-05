@@ -8,6 +8,9 @@ public class AtorEntity {
     private String nome;
     private List<Long> idsFilmes;
 
+    public AtorEntity(){
+    }
+
     public AtorEntity(final String nome, final List<Long> idsFilmes) {
         this.nome = nome;
         this.idsFilmes = idsFilmes;

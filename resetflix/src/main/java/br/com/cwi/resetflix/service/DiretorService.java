@@ -19,7 +19,6 @@ import java.util.List;
 public class DiretorService {
     @Autowired
     private DiretoresRepository diretoresRepository;
-
     private FilmeRepository filmeRepository;
 
     private static DiretoresResponseMapper MAPPER_RESPONSE = new DiretoresResponseMapper();
@@ -37,7 +36,7 @@ public class DiretorService {
         return MAPPER_DETALHES_DIRETOR.mapear(diretorSalvo, filmesDiretor);
     }
 
-    public Long criarDiretor(CriarDiretorRequest request) {
+    public Long criarDiretor(final CriarDiretorRequest request) {
         DiretorEntity diretorSalvar = MAPPER_ENTITY.mapear(request);
         return diretoresRepository.criarDiretor(diretorSalvar);
     }

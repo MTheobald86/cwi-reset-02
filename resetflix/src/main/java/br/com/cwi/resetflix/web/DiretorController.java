@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/diretor")
+@RequestMapping("/diretores")
 public class DiretorController implements DiretoresContract {
 
     @Autowired
@@ -30,7 +30,7 @@ public class DiretorController implements DiretoresContract {
 
     @Override
     @PostMapping
-    public Long criarDiretor(@RequestBody CriarDiretorRequest request){
+    public Long criarDiretor(@RequestBody final CriarDiretorRequest request){
         return diretorService.criarDiretor(request);
     }
 

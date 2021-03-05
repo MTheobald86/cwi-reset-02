@@ -9,7 +9,7 @@ public class ConsultarDetalhesDiretorResponse {
     private String nome;
     private List <FilmeResponse> filmes;
 
-    public ConsultarDetalhesDiretorResponse(Long id, String nome, List<FilmeResponse> filmes) {
+    public ConsultarDetalhesDiretorResponse(final Long id, final String nome, final List<FilmeResponse> filmes) {
         this.id = id;
         this.nome = nome;
         this.filmes = filmes;

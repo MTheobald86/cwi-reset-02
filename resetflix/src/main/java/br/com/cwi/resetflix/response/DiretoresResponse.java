@@ -1,15 +1,11 @@
 package br.com.cwi.resetflix.response;
 
-import br.com.cwi.resetflix.entity.DiretorEntity;
-
-import java.util.List;
-
 public class DiretoresResponse {
 
-    private Long id;
-    private String nome;
+     Long id;
+     String nome;
 
-    public DiretoresResponse(Long id, String nome) {
+    public DiretoresResponse(final Long id, final String nome) {
         this.id = id;
         this.nome = nome;
     }

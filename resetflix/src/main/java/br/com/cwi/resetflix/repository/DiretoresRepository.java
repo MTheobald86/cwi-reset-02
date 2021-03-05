@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public class DiretoresRepository {
 
-    List<DiretorEntity> diretores = new ArrayList<>();
-    static Long contadorIds = 1l;
+    static List<DiretorEntity> diretores = new ArrayList<>();
+    static Long contadorIds = 1L;
 
     public List<DiretorEntity> getDiretores() {
        return diretores;
@@ -26,12 +26,20 @@ public class DiretoresRepository {
         return null;
     }
 
-    public Long criarDiretor(DiretorEntity diretorSalvar) {
+    public Long criarDiretor(final DiretorEntity diretorSalvar) {
         if (diretorSalvar.getId() == null){
             diretorSalvar.setId(contadorIds);
             contadorIds++;
         }
         diretores.add(diretorSalvar);
         return diretorSalvar.getId();
+    }
+
+    public void vincularFilme(FilmeEntity filmeSalvar) {
+        for (DiretorEntity diretor : diretores){
+            if (diretor.getId().equals(filmeSalvar.getIdDiretor())){
+                diretor.getIdFilmes().add(filmeSalvar.getId());
+            }
+        }
     }
 }

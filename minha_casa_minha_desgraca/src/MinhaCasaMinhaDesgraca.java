@@ -107,7 +107,5 @@ public class MinhaCasaMinhaDesgraca {
                 mesesParaPagamento);
         Thread.sleep(new Random().nextInt(4000) + 1000);
 
-        PropostaFinanciamento financiamento = new PropostaFinanciamento(beneficiario, imovelEscolhido, mesesParaPagamento);
-        financiamento.validarProposta();
     }
 }

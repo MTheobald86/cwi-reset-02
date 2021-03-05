@@ -7,6 +7,8 @@ public class DiretorEntity {
     private String nome;
     private List<Long> idFilmes;
 
+    public DiretorEntity(){}
+
     public DiretorEntity(String nome, List<Long> idFilmes) {
         this.nome = nome;
         this.idFilmes = idFilmes;

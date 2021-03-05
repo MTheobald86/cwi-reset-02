@@ -12,10 +12,8 @@ public class AtoresResponseMapper {
         List<AtoresResponse> atoresResponses = new ArrayList<>();
 
         for(AtorEntity atorEntity : atores){
-
             AtoresResponse atorResponse = new AtoresResponse(atorEntity.getId(),
                 atorEntity.getNome());
-
             atoresResponses.add(atorResponse);
         }
 

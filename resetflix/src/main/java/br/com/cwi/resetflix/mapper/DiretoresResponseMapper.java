@@ -17,4 +17,9 @@ public class DiretoresResponseMapper {
         }
         return diretoresResponses;
     }
+
+    public DiretoresResponse mapearDiretor(DiretorEntity diretor) {
+        DiretoresResponse diretorDoFilme = new DiretoresResponse(diretor.getId(), diretor.getNome());
+        return diretorDoFilme;
+    }
 }

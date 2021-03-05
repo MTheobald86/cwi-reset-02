@@ -3,6 +3,7 @@ package br.com.cwi.resetflix.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cwi.resetflix.entity.FilmeEntity;
 import org.springframework.stereotype.Repository;
 
 import br.com.cwi.resetflix.entity.AtorEntity;
@@ -22,20 +23,25 @@ public class AtoresRepository {
             atorSalvar.setId(contadorIds);
             contadorIds++;
         }
-
         atores.add(atorSalvar);
-
         return atorSalvar.getId();
     }
 
     public AtorEntity acharAtorPorId(final Long id) {
-
+        AtorEntity atorProcurado = new AtorEntity();
         for(AtorEntity atorEntity : atores){
             if(atorEntity.getId().equals(id)){
-                return atorEntity;
+               atorProcurado = atorEntity;
             }
         }
+        return atorProcurado;
+    }
 
-        return null;
+    public void vincularFilme(FilmeEntity filmeSalvar) {
+        for (AtorEntity ator : atores){
+            if (ator.getId().equals(filmeSalvar.getIdsAtores())){
+                ator.getIdsFilmes().add(filmeSalvar.getId());
+            }
+        }
     }
 }

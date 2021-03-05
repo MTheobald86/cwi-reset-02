@@ -6,7 +6,7 @@ public class CriarDiretorRequest {
     private String nome;
     private List<Long> idsFilmes;
 
-    public CriarDiretorRequest(String nome, List<Long> idsFilmes) {
+    public CriarDiretorRequest(final String nome, List<Long> idsFilmes) {
         this.nome = nome;
         this.idsFilmes = idsFilmes;
     }
