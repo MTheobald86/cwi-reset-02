@@ -12,6 +12,8 @@ public class FilmeEntity {
     private Long idDiretor;
     private List<Long> idsAtores;
 
+    public FilmeEntity(){}
+
     public FilmeEntity(final Long id, final String nome, final Genero genero, final Long idDiretor,
         final List<Long> idsAtores) {
         this.id = id;

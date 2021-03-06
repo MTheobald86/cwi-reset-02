@@ -21,25 +21,32 @@ public class ConsultarDetalhesFilmeResponseMapper {
 
     @Autowired
     DiretoresRepository diretoresRepository;
+    @Autowired
     DiretoresResponseMapper MAPPER_DIRETOR_DO_FILME;
+    @Autowired
     AtoresRepository atoresRepository;
+    @Autowired
     AtoresResponseMapper MAPPER_ELENCO;
 
 
     public ConsultarDetalhesFilmeResponse mapear(final FilmeEntity filmeSalvo){
-        Long  idDiretor = filmeSalvo.getIdDiretor();
-        DiretorEntity diretor = diretoresRepository.acharDiretorPorId(idDiretor);
+         return  new ConsultarDetalhesFilmeResponse(filmeSalvo.getId(),
+                filmeSalvo.getNome(),filmeSalvo.getGenero(),
+                null, null);
+    }
+    private DiretoresResponse mapearDiretor(final Long id) {
+        DiretorEntity diretor = diretoresRepository.acharDiretorPorId(id);
         DiretoresResponse diretorDoFilme = MAPPER_DIRETOR_DO_FILME.mapearDiretor(diretor);
-        List<AtorEntity> atores= atoresRepository.getAtores();
-        for (AtorEntity ator : atores){
-            if (ator.getId().equals(filmeSalvo.getIdsAtores())){
+        return diretorDoFilme;
+    }
+    private List<AtoresResponse> mapearAtores(final FilmeEntity filmeSalvo) {
+        List<AtorEntity> atores = atoresRepository.getAtores();
+        for (AtorEntity ator : atores) {
+            if (ator.getId().equals(filmeSalvo.getIdsAtores())) {
                 atores.add(ator);
             }
         }
         List<AtoresResponse> elenco = MAPPER_ELENCO.mapear(atores);
-        return new ConsultarDetalhesFilmeResponse(filmeSalvo.getId(), filmeSalvo.getNome(),filmeSalvo.getGenero(),
-                diretorDoFilme, elenco);
-
+        return elenco;
     }
-
 }

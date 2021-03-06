@@ -26,13 +26,15 @@ public class DiretoresRepository {
         return diretorSalvar.getId();
     }
 
-    public DiretorEntity acharDiretorPorId(Long id) {
+    public DiretorEntity acharDiretorPorId(final Long id) {
+        DiretorEntity diretorDoFilme = new DiretorEntity();
         for (DiretorEntity diretorSalvo:diretores){
             if (diretorSalvo.getId().equals(id)){
-                return diretorSalvo;
+                diretorDoFilme = diretorSalvo;
+                break;
             }
         }
-        return null;
+        return diretorDoFilme;
     }
 
     public Long vincularFilme(FilmeEntity filmeSalvar) {

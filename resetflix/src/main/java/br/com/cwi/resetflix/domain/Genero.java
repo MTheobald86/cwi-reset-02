@@ -7,5 +7,5 @@ public enum Genero {
     TERROR,
     SUSPENSE,
     ROMANCE,
-    
+
 }

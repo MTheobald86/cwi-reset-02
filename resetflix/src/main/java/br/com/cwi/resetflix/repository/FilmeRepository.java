@@ -25,8 +25,6 @@ public class FilmeRepository {
         for (FilmeEntity filme : filmes){
             if (filme.getGenero().equals(genero)){
                 filmesFiltrados.add(filme);
-            }else{
-                throw new NotFoundException("Não há registros para sua busca");
             }
         }
         return filmesFiltrados;
@@ -37,29 +35,32 @@ public class FilmeRepository {
         for (FilmeEntity filme : filmes){
             if (filme.getIdsAtores().equals(id)){
                 filmeAtor.add(filme);
+
             }
         }
 
         return filmeAtor;
     }
 
-    public List<FilmeEntity> acharFilmeDiretor(Long id) {
+    public List<FilmeEntity> acharFilmeDiretor(final Long id) {
         List<FilmeEntity> filmeDiretor = new ArrayList<>();
         for (FilmeEntity filme : filmes){
             if (filme.getIdDiretor().equals(id)){
                 filmeDiretor.add(filme);
+                break;
             }
         }
         return filmeDiretor;
     }
 
     public FilmeEntity encontrarFilmeId(Long id) {
+        FilmeEntity filmeProcurado = new FilmeEntity();
         for (FilmeEntity filme : filmes){
             if (filme.getId().equals(id)){
-                return filme;
+                filmeProcurado = filme;
             }
         }
-        return null;
+        return filmeProcurado;
     }
 
     public Long criarFilme(final FilmeEntity filmeSalvar) {
