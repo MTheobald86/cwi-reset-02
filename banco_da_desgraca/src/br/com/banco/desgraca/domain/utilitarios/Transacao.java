@@ -19,8 +19,8 @@ public class Transacao {
 
     }
 
-    public void transacao(){
-      operacoes = new ArrayList<>();
+    public Transacao (){
+        operacoes = new ArrayList<>();
     }
 
     public void registrarTransacao(Transacao operacao){

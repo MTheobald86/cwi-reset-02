@@ -11,35 +11,36 @@ public class MinhaCasaMinhaDesgraca {
 
         ImoveisParaFinanciamento opcoesParaFinanciamento = new ImoveisParaFinanciamento();
 
+
         /**
          * INÍCIO
          *
          * NÃO MODIFICAR ESTA CLASSE ANTES DESTA LINHA.
          */
-        opcoesParaFinanciamento.registrarImovel(new Apartamento(new Endereco("Avenida Portugal", 499,
-                "apto 106", "Valparaíso", "Petrópolis", UnidadeFederativa.RJ ),400000.0,
-                Apartamento.getTipo(), 1));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Avenida Portugal", 499,
+                "apto 106", "Valparaíso", "Petrópolis", UnidadeFederativa.RJ ),400000));
 
-        opcoesParaFinanciamento.registrarImovel(new Casa(new Endereco("Vila Dantas", 0,
-                "lote 12", "Dantas", "Areal", UnidadeFederativa.RJ), 100000,
-                Casa.getTipo(), true));
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Vila Dantas", 0,
+                "lote 12", "Dantas", "Areal", UnidadeFederativa.RJ), 100000));
 
-        opcoesParaFinanciamento.registrarImovel(new Casa(new Endereco("Rua Dr. Hermogênio Silva",
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua Dr. Hermogênio Silva",
                 560, "casa 6", "Retiro", "Petrópolis", UnidadeFederativa.RJ),
-                45000, Casa.getTipo(),true));
+                45000));
 
-        opcoesParaFinanciamento.registrarImovel(new Casa(new Endereco("Rua Qualquer",
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua Qualquer",
                 999, "casa 0", "Seinao", "Jundiaí", UnidadeFederativa.SP),
-                600000, Casa.getTipo(), false));
+                600000));
 
-        opcoesParaFinanciamento.registrarImovel(new Casa(new Endereco("Rua dos Bobos",
+        opcoesParaFinanciamento.registrarImovel(new Imovel(new Endereco("Rua dos Bobos",
                 0, "torta", "Vinicius de Moraes", "Toquinho", UnidadeFederativa.ES),
-                550000, Casa.getTipo(), false));
+                550000));
         /**
          * FIM
          *
          * NÃO MODIFICAR ESTA CLASSE APÓS ESTA LINHA.
          */
+
+
 
         List<Imovel> todasAsOpcoes = opcoesParaFinanciamento.buscarOpcoes(Double.MAX_VALUE);
         if (todasAsOpcoes == null || todasAsOpcoes.isEmpty()) {
@@ -107,5 +108,7 @@ public class MinhaCasaMinhaDesgraca {
                 mesesParaPagamento);
         Thread.sleep(new Random().nextInt(4000) + 1000);
 
+        PropostaFinanciamento financiamento = new PropostaFinanciamento(beneficiario, imovelEscolhido, mesesParaPagamento);
+        financiamento.validarProposta();
     }
 }

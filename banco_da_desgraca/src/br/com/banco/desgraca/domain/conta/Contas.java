@@ -15,15 +15,14 @@ public abstract class Contas implements ContaBancaria {
     private double saldo;
 
 
-    List<Transacao>operacoes = new ArrayList<>();
-
-
     public Contas(InstituicaoBancaria instituicaoBancaria, Integer numeroConta, TipoConta tipoConta, double saldo) {
         this.instituicaoBancaria = instituicaoBancaria;
         this.numeroConta = numeroConta;
         this.tipoConta = tipoConta;
         this.saldo = saldo;
     }
+
+    Transacao operacoes = new Transacao();
 
     public abstract String dadosDaconta ();
 
@@ -46,7 +45,7 @@ public abstract class Contas implements ContaBancaria {
         }else {
             saldo += valor;
             System.out.println("Depositando " + DecimalFormat.getCurrencyInstance().format(valor) + " em " + dadosDaconta());
-            operacoes.add(new Transacao(TipoTransacao.ENTRADA, valor, data, numeroConta));
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.ENTRADA, valor, data, numeroConta));
         }
 
     }
@@ -58,7 +57,7 @@ public abstract class Contas implements ContaBancaria {
             saldo -= valor;
             System.out.println("Retirando " + DecimalFormat.getCurrencyInstance().format(valor) + " de " +
                     dadosDaconta());
-            operacoes.add(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
         }else{
             throw new SaldoInsuficienteException();
         }
@@ -77,7 +76,7 @@ public abstract class Contas implements ContaBancaria {
             contaDestino.depositar(valor);
             System.out.println("Transferindo " + DecimalFormat.getCurrencyInstance().format(valor)+ " de "
                     + dadosDaconta()+ " para " + contaDestino.toString());
-            operacoes.add(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
+            operacoes.registrarTransacao(new Transacao(TipoTransacao.SAIDA, valor, data, numeroConta));
         }
     }
 
@@ -85,7 +84,7 @@ public abstract class Contas implements ContaBancaria {
     public void exibirExtrato(LocalDate inicio, LocalDate fim) {
         System.out.println(dadosDaconta());
         System.out.println("------------------");
-        for (Transacao t : operacoes){
+        for (Transacao t : operacoes.getOperacoes()){
             if (t.getNumeroConta().equals(numeroConta)){
                 if (t.getDataDaTransacao().compareTo(inicio)>=0 && t.getDataDaTransacao().compareTo(fim)<=0){
                     System.out.println(t.getDataDaTransacao()+ "  " + t.getTipoTransacao().getSinal() + "  " +
